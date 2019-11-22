@@ -2,6 +2,10 @@
 var folderA5 = Folder("~/Desktop/save a5");
 if (!folderA5.exists) { folderA5.create(); }
 
+// tao folder save customer
+var folderCustomer = Folder("~/Desktop/save customer");
+if (!folderCustomer.exists) { folderCustomer.create(); }
+
 
 
 try {
