@@ -19,8 +19,20 @@ for (var i = 0; i < customerChildren.length; i++) {
 
 
             try {
+                jpgOption = new JPEGSaveOptions();
+                jpgOption.quality = 12;
+
+                app.documents.add(2480, 3508, 300, "a4");
+                app.open(File(customerChildren[i] + "/bia.jpg"));
+                app.doAction("duplicate to a4", "calendar");
+                app.doAction("xep to bia a4", "calendar");
+                app.activeDocument.saveAs(Folder("~/Desktop/save a4/" + currentFolder + " (1).jpg"), jpgOption, true, Extension.LOWERCASE);
+                app.activeDocument.close(SaveOptions.DONOTSAVECHANGES);
 
 
+
+
+                // lam 12 thang
                 app.documents.add(2480, 3508, 300, "a4");
                 for (var i2 = 1; i2 <= 12; i2 = i2 + 2) {
                     // alert(customerChildren[i]+"/t ("+i2+").jpg");
@@ -36,9 +48,8 @@ for (var i = 0; i < customerChildren.length; i++) {
 
                     app.doAction("hop nhat", "calendar");
                     app.activeDocument.duplicate(currentFolder, false);
-                    jpgOption = new JPEGSaveOptions();
-                    jpgOption.quality = 12;
-                    app.activeDocument.saveAs(Folder("~/Desktop/save a4/" + currentFolder + " " + (((i2 + 1) / 2) + 1) + ".jpg"), jpgOption, true, Extension.LOWERCASE);
+
+                    app.activeDocument.saveAs(Folder("~/Desktop/save a4/" + currentFolder + " (" + (((i2 + 1) / 2) + 1) + ").jpg"), jpgOption, true, Extension.LOWERCASE);
                     app.activeDocument.close(SaveOptions.DONOTSAVECHANGES);
                 }
                 app.activeDocument.close(SaveOptions.DONOTSAVECHANGES);
