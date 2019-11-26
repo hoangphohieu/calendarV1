@@ -6,7 +6,7 @@ if (folderA4.exists) {
 else {
     folderA4.create();
     jpgOption = new JPEGSaveOptions();
-    jpgOption.quality = 12;
+    jpgOption.quality = 10;
 
     var customerChildren = Folder("~/Desktop/save customer").getFiles("*");
     for (var i = 0; i < customerChildren.length; i++) {
@@ -19,7 +19,7 @@ else {
             }
             else if (ListFileChildren.length < 15) { // nếu lịch có 1 mặt 13-14 file thì làm cái này
                 try {
-
+                    Folder("~/Desktop/save a4/1 mat").create();
 
                     // lam to bia
                     app.documents.add(2480, 3508, 300, "a4");
@@ -39,7 +39,7 @@ else {
                         app.doAction("can giua", "calendar");
                         app.doAction("can le duoi", "calendar");
                     }
-                    app.activeDocument.saveAs(Folder("~/Desktop/save a4/" + currentFolder + " (1).jpg"), jpgOption, true, Extension.LOWERCASE);
+                    app.activeDocument.saveAs(Folder("~/Desktop/save a4/1 mat/" + currentFolder + " (1).jpg"), jpgOption, true, Extension.LOWERCASE);
 
 
                     // lam 12 thang
@@ -56,7 +56,7 @@ else {
 
                         app.doAction("hop nhat", "calendar");
 
-                        app.activeDocument.saveAs(Folder("~/Desktop/save a4/" + currentFolder + " (" + (((i2 + 1) / 2) + 1) + ").jpg"), jpgOption, true, Extension.LOWERCASE);
+                        app.activeDocument.saveAs(Folder("~/Desktop/save a4/1 mat/" + currentFolder + " (" + (((i2 + 1) / 2) + 1) + ").jpg"), jpgOption, true, Extension.LOWERCASE);
 
     
                     }
@@ -72,7 +72,7 @@ else {
             else { // nếu lịch 2 mặt -  22 file thì làm cái này
 
                 try {
-
+                    Folder("~/Desktop/save a4/2 mat").create();
 
                     // lam to bia
                     app.documents.add(2480, 3508, 300, "a4");
@@ -92,8 +92,8 @@ else {
                         app.doAction("can giua", "calendar");
                         app.doAction("can le duoi", "calendar");
                     }
-                    app.activeDocument.saveAs(Folder("~/Desktop/save a4/" + currentFolder + " (1).jpg"), jpgOption, true, Extension.LOWERCASE);
-                    app.activeDocument.saveAs(Folder("~/Desktop/save a4/" + currentFolder + " (2).jpg"), jpgOption, true, Extension.LOWERCASE);
+                    app.activeDocument.saveAs(Folder("~/Desktop/save a4/2 mat/" + currentFolder + " (1).jpg"), jpgOption, true, Extension.LOWERCASE);
+                    app.activeDocument.saveAs(Folder("~/Desktop/save a4/2 mat/" + currentFolder + " (2).jpg"), jpgOption, true, Extension.LOWERCASE);
 
 
                     // lam 12 thang
@@ -111,7 +111,7 @@ else {
                         app.doAction("can le duoi", "calendar");
                         app.doAction("hop nhat", "calendar");
         
-                        app.activeDocument.saveAs(Folder("~/Desktop/save a4/" + currentFolder + " (" + (i2+2) + ").jpg"), jpgOption, true, Extension.LOWERCASE);
+                        app.activeDocument.saveAs(Folder("~/Desktop/save a4/2 mat/" + currentFolder + " (" + (i2+2) + ").jpg"), jpgOption, true, Extension.LOWERCASE);
                        
                         app.open(File(customerChildren[i] + "/s%20(" + i2 + ").jpg"));
                         app.doAction("duplicate to a4", "calendar");
@@ -123,7 +123,7 @@ else {
                         app.doAction("can le duoi", "calendar");
                         app.doAction("hop nhat", "calendar");
                        
-                        app.activeDocument.saveAs(Folder("~/Desktop/save a4/" + currentFolder + " (" + (i2+3) + ").jpg"), jpgOption, true, Extension.LOWERCASE);
+                        app.activeDocument.saveAs(Folder("~/Desktop/save a4/2 mat/" + currentFolder + " (" + (i2+3) + ").jpg"), jpgOption, true, Extension.LOWERCASE);
                        
                     }
                     app.activeDocument.close(SaveOptions.DONOTSAVECHANGES);
