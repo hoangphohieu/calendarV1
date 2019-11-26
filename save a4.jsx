@@ -5,6 +5,9 @@ if (folderA4.exists) {
 }
 else {
     folderA4.create();
+    jpgOption = new JPEGSaveOptions();
+    jpgOption.quality = 12;
+
     var customerChildren = Folder("~/Desktop/save customer").getFiles("*");
     for (var i = 0; i < customerChildren.length; i++) {
         var currentFolder = String(customerChildren[i]).split("/");   // đường dẫn thư mục là  customerChildren[i]
@@ -14,10 +17,9 @@ else {
             if (ListFileChildren.length < 13) {
                 alert(" co cuon mot mat khong du 13 file");
             }
-            else if (ListFileChildren.length < 15) {
+            else if (ListFileChildren.length < 15) { // nếu lịch có 1 mặt 13-14 file thì làm cái này
                 try {
-                    jpgOption = new JPEGSaveOptions();
-                    jpgOption.quality = 12;
+
 
                     // lam to bia
                     app.documents.add(2480, 3508, 300, "a4");
@@ -38,12 +40,10 @@ else {
                         app.doAction("can le duoi", "calendar");
                     }
                     app.activeDocument.saveAs(Folder("~/Desktop/save a4/" + currentFolder + " (1).jpg"), jpgOption, true, Extension.LOWERCASE);
-                    app.activeDocument.close(SaveOptions.DONOTSAVECHANGES);
+
 
                     // lam 12 thang
-                    app.documents.add(2480, 3508, 300, "a4");
                     for (var i2 = 1; i2 <= 12; i2 = i2 + 2) {
-                        // alert(customerChildren[i]+"/t ("+i2+").jpg");
                         app.open(File(customerChildren[i] + "/t%20(" + i2 + ").jpg"));
                         app.doAction("duplicate to a4", "calendar");
                         app.doAction("can giua", "calendar");
@@ -55,48 +55,86 @@ else {
                         app.doAction("can le duoi", "calendar");
 
                         app.doAction("hop nhat", "calendar");
-                        app.activeDocument.duplicate(currentFolder, false);
 
                         app.activeDocument.saveAs(Folder("~/Desktop/save a4/" + currentFolder + " (" + (((i2 + 1) / 2) + 1) + ").jpg"), jpgOption, true, Extension.LOWERCASE);
-                        app.activeDocument.close(SaveOptions.DONOTSAVECHANGES);
+
+    
                     }
                     app.activeDocument.close(SaveOptions.DONOTSAVECHANGES);
 
                 } catch (error) {
-                    alert("Dat sai ten, vui long thu lai");
+                    alert(customerChildren[i]+ ": Dat sai ten, vui long thu lai");
                 }
 
 
 
             }
-            else{}
+            else { // nếu lịch 2 mặt -  22 file thì làm cái này
+
+                try {
+
+
+                    // lam to bia
+                    app.documents.add(2480, 3508, 300, "a4");
+                    app.open(File(customerChildren[i] + "/bia.jpg"));
+                    app.doAction("duplicate to a4", "calendar");
+                    app.doAction("can giua", "calendar");
+                    app.doAction("can le tren", "calendar");
+
+                    try {
+                        app.open(File(customerChildren[i] + "/biasau.jpg"));
+                        app.doAction("duplicate to a4", "calendar");
+                        app.doAction("can giua", "calendar");
+                        app.doAction("can le duoi", "calendar");
+                    } catch (error) {
+                        app.open(File(customerChildren[i] + "/bia.jpg"));
+                        app.doAction("duplicate to a4", "calendar");
+                        app.doAction("can giua", "calendar");
+                        app.doAction("can le duoi", "calendar");
+                    }
+                    app.activeDocument.saveAs(Folder("~/Desktop/save a4/" + currentFolder + " (1).jpg"), jpgOption, true, Extension.LOWERCASE);
+                    app.activeDocument.saveAs(Folder("~/Desktop/save a4/" + currentFolder + " (2).jpg"), jpgOption, true, Extension.LOWERCASE);
+
+
+                    // lam 12 thang
+                    for (var i2 = 1; i2 <= 12; i2 = i2 + 2) {
+
+
+
+                        app.open(File(customerChildren[i] + "/t%20(" + i2 + ").jpg"));
+                        app.doAction("duplicate to a4", "calendar");
+                        app.doAction("can giua", "calendar");
+                        app.doAction("can le tren", "calendar");
+                        app.open(File(customerChildren[i] + "/t%20(" + (i2 + 1) + ").jpg"));
+                        app.doAction("duplicate to a4", "calendar");
+                        app.doAction("can giua", "calendar");
+                        app.doAction("can le duoi", "calendar");
+                        app.doAction("hop nhat", "calendar");
+        
+                        app.activeDocument.saveAs(Folder("~/Desktop/save a4/" + currentFolder + " (" + (i2+2) + ").jpg"), jpgOption, true, Extension.LOWERCASE);
+                       
+                        app.open(File(customerChildren[i] + "/s%20(" + i2 + ").jpg"));
+                        app.doAction("duplicate to a4", "calendar");
+                        app.doAction("can giua", "calendar");
+                        app.doAction("can le tren", "calendar");
+                        app.open(File(customerChildren[i] + "/s%20(" + (i2 + 1) + ").jpg"));
+                        app.doAction("duplicate to a4", "calendar");
+                        app.doAction("can giua", "calendar");
+                        app.doAction("can le duoi", "calendar");
+                        app.doAction("hop nhat", "calendar");
+                       
+                        app.activeDocument.saveAs(Folder("~/Desktop/save a4/" + currentFolder + " (" + (i2+3) + ").jpg"), jpgOption, true, Extension.LOWERCASE);
+                       
+                    }
+                    app.activeDocument.close(SaveOptions.DONOTSAVECHANGES);
+
+                } catch (error) {
+                    alert(currentFolder+ ": Dat sai ten, vui long thu lai");
+                }
+
+            }
         }
 
     }
 }
 
-// var name2 = String(inputFolder[0]).split("/");
-// var name3 = name2[name2.length - 1]
-
-
-// var folder2 = Folder(inputFolder[0]).getFiles("*");
-// // var fileDialog = app.openDialog();
-// // var file = new File(fileDialog);
-// app.open(File(folder2[0]));
-// var folderAa = Folder("~/Desktop/save a5/" + name3 + ".tif");
-// app.activeDocument.saveAs(folderAa, TiffSaveOptions, false, Extension.LOWERCASE);
-// alert(name3)
-
-// try {
-//     var thisDocument = app.activeDocument.name;
-//     var nameSave = thisDocument.split(".")[0];
-//     var fileName = Folder("~/Desktop/save a4/" + nameSave);
-//     jpgOption = new JPEGSaveOptions();
-//     jpgOption.quality = 12;
-//     app.activeDocument.saveAs(fileName, jpgOption, true, Extension.LOWERCASE);
-//     app.activeDocument.close(SaveOptions.DONOTSAVECHANGES);
-
-// } catch (error) {
-//     alert("have no thing to do !");
-
-// }
