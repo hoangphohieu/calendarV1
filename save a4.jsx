@@ -6,7 +6,7 @@ if (folderA4.exists) {
 else {
     folderA4.create();
     jpgOption = new JPEGSaveOptions();
-    jpgOption.quality = 10;
+    jpgOption.quality = 11;
 
     var customerChildren = Folder("~/Desktop/save customer").getFiles("*");
     for (var i = 0; i < customerChildren.length; i++) {
