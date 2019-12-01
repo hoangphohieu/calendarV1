@@ -39,6 +39,8 @@ else {
                         app.doAction("can giua", "calendar");
                         app.doAction("can le duoi", "calendar");
                     }
+                    app.doAction("hop nhat", "calendar");
+
                     app.activeDocument.saveAs(Folder("~/Desktop/save a4/1 mat/" + currentFolder + " (1).jpg"), jpgOption, true, Extension.LOWERCASE);
 
 
@@ -92,6 +94,8 @@ else {
                         app.doAction("can giua", "calendar");
                         app.doAction("can le duoi", "calendar");
                     }
+                    app.doAction("hop nhat", "calendar");
+
                     app.activeDocument.saveAs(Folder("~/Desktop/save a4/2 mat/" + currentFolder + " (1).jpg"), jpgOption, true, Extension.LOWERCASE);
                     app.activeDocument.saveAs(Folder("~/Desktop/save a4/2 mat/" + currentFolder + " (2).jpg"), jpgOption, true, Extension.LOWERCASE);
 
