@@ -15,7 +15,8 @@ else {
 
     KiemTraThuMuc(customerChildren);
 
-
+     ngay = (new Date()).getDate();
+     thang = (new Date()).getMonth() + 1;
 
     for (var i = 0; i < customerChildren.length; i = i + 2) {
         var currentFolder = String(customerChildren[i]).split("/");   // đường dẫn thư mục là  customerChildren[i]
@@ -25,12 +26,12 @@ else {
             if (ListFileChildren.length < 13) {
                 alert(" co cuon mot mat khong du 13 file");
             }
-            else if (ListFileChildren.length < 15) { // nếu lịch có 1 mặt 13-14 file thì làm cái này
+            else if (ListFileChildren.length < 16) { // nếu lịch có 1 mặt 13-14 file thì làm cái này
 
                 Folder("~/Desktop/save a4/1 mat").create();
 
                 // lam to bia tren
-                app.documents.add(2480, 3508, 300, "a4");
+                app.documents.add(3720, 5262, 450, "a4");
                 app.open(File(customerChildren[i] + "/bia.jpg"));
                 app.doAction("duplicate to a4", "calendar");
                 app.doAction("can giua", "calendar");
@@ -49,6 +50,46 @@ else {
                 app.doAction("hop nhat", "calendar");
 
                 app.activeDocument.saveAs(Folder("~/Desktop/save a4/1 mat/" + i + "-" + (i + 1) + " (1).jpg"), jpgOption, true, Extension.LOWERCASE);
+
+                // lam thang 11 2020
+                try {
+                    app.open(File(customerChildren[i] + "/t11%202020.jpg"));
+                    app.doAction("duplicate to a4", "calendar");
+                    app.doAction("can giua", "calendar");
+                    app.doAction("can le tren", "calendar");
+
+                    app.open(File(customerChildren[i + 1] + "/t11%202020.jpg"));
+                    app.doAction("duplicate to a4", "calendar");
+                    app.doAction("can giua", "calendar");
+                    app.doAction("can le duoi", "calendar");
+
+                } catch (error) {
+                    // loi khi so quyen la le
+                }
+                app.doAction("hop nhat", "calendar");
+                app.activeDocument.saveAs(Folder("~/Desktop/save a4/1 mat/" + i + "-" + (i + 1) + " (2).jpg"), jpgOption, true, Extension.LOWERCASE);
+
+                // lam thang 12 2020
+                try {
+                    app.open(File(customerChildren[i] + "/t12%202020.jpg"));
+                    app.doAction("duplicate to a4", "calendar");
+                    app.doAction("can giua", "calendar");
+                    app.doAction("can le tren", "calendar");
+
+                    app.open(File(customerChildren[i + 1] + "/t12%202020.jpg"));
+                    app.doAction("duplicate to a4", "calendar");
+                    app.doAction("can giua", "calendar");
+                    app.doAction("can le duoi", "calendar");
+
+                } catch (error) {
+                    // loi khi so quyen la le
+                }
+                app.doAction("hop nhat", "calendar");
+                app.activeDocument.saveAs(Folder("~/Desktop/save a4/1 mat/" + i + "-" + (i + 1) + " (3).jpg"), jpgOption, true, Extension.LOWERCASE);
+
+
+
+
 
 
                 // lam 12 thang
@@ -69,15 +110,44 @@ else {
 
                     app.doAction("hop nhat", "calendar");
 
-                    app.activeDocument.saveAs(Folder("~/Desktop/save a4/1 mat/" + i + "-" + (i + 1) + " (" + (i2 + 1) + ").jpg"), jpgOption, true, Extension.LOWERCASE);
+                    app.activeDocument.saveAs(Folder("~/Desktop/save a4/1 mat/" + i + "-" + (i + 1) + " (" + (i2 + 3) + ").jpg"), jpgOption, true, Extension.LOWERCASE);
 
 
                 }
+                
+
+
+                // lam trang cuoi
+                try {
+                    app.open(File("~/Desktop/to%20cuoi.psd"));
+                    app.activeDocument.artLayers["sku"].textItem.contents = "J" + ngay + thang + (i+1);
+                    app.doAction("duplicate to a4", "calendar");
+                    app.doAction("can giua", "calendar");
+                    app.doAction("can le tren", "calendar");
+
+                    app.open(File("~/Desktop/to%20cuoi.psd"));
+                    app.activeDocument.artLayers["sku"].textItem.contents = "J" + ngay + thang + (i + 2);
+                    app.doAction("duplicate to a4", "calendar");
+                    app.doAction("can giua", "calendar");
+                    app.doAction("can le duoi", "calendar");
+
+                } catch (error) {
+                    // loi khi so quyen la le
+                }
+                app.doAction("hop nhat", "calendar");
+                app.activeDocument.saveAs(Folder("~/Desktop/save a4/1 mat/" + i + "-" + (i + 1) + " (16).jpg"), jpgOption, true, Extension.LOWERCASE);
+
+
                 app.activeDocument.close(SaveOptions.DONOTSAVECHANGES);
 
 
-
             }
+
+
+
+
+
+
             else { // nếu lịch 2 mặt -  22 file thì làm cái này
 
                 Folder("~/Desktop/save a4/2 mat").create();
@@ -182,10 +252,15 @@ function KiemTraThuMuc(customerChildren) {
                     || name === "s%20(10).jpg"
                     || name === "s%20(11).jpg"
                     || name === "s%20(12).jpg"
+                    || name === "t11%202020.jpg"
+                    || name === "t12%202020.jpg"
                 )
 
             ) alert(currentFolder);
         }
 
     }
+}
+function taoMaKhach(params) {
+    
 }
